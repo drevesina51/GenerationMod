@@ -12,19 +12,8 @@ class GenerationMod extends AIInfo
   function GetAPIVersion()  { return "1.3"; }
   function GetUrl()         { return ""; }
   function GetSettings()
-       AddSetting({
-            name = "",
-            description = "",
-            flags = CONFIG_INGAME,
-            easy_value = ,
-            medium_value = ,
-            hard_value = ,
-            custom_value = ,
-            min_value = ,
-            max_value = ,
-            step_size = 
-       });
-       AddSetting({
+              
+        AddSetting({
             name = "industry_spacing",
             description = "Space between any two industries",
             flags = CONFIG_INGAME,
@@ -36,6 +25,30 @@ class GenerationMod extends AIInfo
             max_value = 100,
             step_size = 10
        });
+       AddSetting({
+            name = "farm_spacing",
+            description = "Spacing between farm fill",
+            flags = CONFIG_INGAME,
+            easy_value = 40,
+            medium_value = 40,
+            hard_value = 40,
+            custom_value = 40,
+            min_value = 0,
+            max_value = 500,
+            step_size = 10
+        });
+       AddSetting({
+            name = "raw_industry_min",
+            description = "Attempt to build this many clusters of raw industry",
+            flags = CONFIG_INGAME,
+            easy_value = 5000,
+            medium_value = 5000,
+            hard_value = 5000,
+            custom_value = 5000,
+            min_value = 0,
+            max_value = 5000,
+            step_size = 10
+        });                    
        AddSetting({
             name = "proc_industry_min",
             description = "Attempt to build this many processing industries",
