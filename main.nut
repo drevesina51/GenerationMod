@@ -48,7 +48,7 @@ function GenerationMod::Load() {
 }
 
 // Program start function
-function GenerationMod::Start() {
+function GenerationMod::Start() { 
     industry_classes = GSIndustryTypeList();
     this.Init();
 }
