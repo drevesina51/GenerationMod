@@ -11,7 +11,8 @@ class GenerationMod extends AIInfo
   function GetShortName()   { return "GenMod"; }
   function GetAPIVersion()  { return "1.3"; }
   function GetUrl()         { return ""; }
-  function GetSettings()
+  
+  function GetSettings() {
               
         AddSetting({
             name = "industry_spacing",
@@ -85,6 +86,7 @@ class GenerationMod extends AIInfo
             max_value = 3,
             step_size = 1
         });
+     }
 }
   
 RegisterAI(MyNewAI());
