@@ -13,7 +13,7 @@ class GenerationMod extends AIInfo
   function GetUrl()         { return ""; }
   
   function GetSettings() {
-              
+             
         AddSetting({
             name = "industry_spacing",
             description = "Space between any two industries",
