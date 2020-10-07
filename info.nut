@@ -2,18 +2,16 @@ SELF_VERSION <- 1;
 
 class GenerationMod extends GSInfo
 {
-  function GetAuthor()      { return "IRONy"; }
-  function GetName()        { return "GenerationMod"; }
+  function GetAuthor() { return "IRONy"; }
+  function GetName() { return "GenerationMod"; }
   function GetDescription() { return "Modification of generating economic models; }
-  function GetVersion()     { return SELF_VERSION; }
-  function GetDate()        { return "2020-2021"; }
+  function GetVersion() { return SELF_VERSION; }
+  function GetDate() { return "2020-2021"; }
   function CreateInstance() { return "GenerationMod"; }
-  function GetShortName()   { return "GenMod"; }
-  function GetAPIVersion()  { return "1.3"; }
-  function GetUrl()         { return ""; }
-  
-  function GetSettings() {
-             
+  function GetShortName() { return "GenMod"; }
+  function GetAPIVersion() { return "1.3"; }
+  function GetUrl() { return ""; }
+  function GetSettings() {       
         AddSetting({
             name = "industry_spacing",
             description = "Space between any two industries",
