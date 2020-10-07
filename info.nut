@@ -1,6 +1,6 @@
 SELF_VERSION <- 1;
 
-class GenerationMod extends AIInfo
+class GenerationMod extends GSInfo
 {
   function GetAuthor()      { return "IRONy"; }
   function GetName()        { return "GenerationMod"; }
