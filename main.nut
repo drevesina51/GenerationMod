@@ -22,15 +22,18 @@ class GenerationMod extends GSController {
     build_limit = 0;
     chunk_size = 256;
     town_industry_counts = GSTownList();   
-
+   
+    farmindustry_list = [];
+    rawindustry_list = []; // array of raw industry type id's, set in industryconstructor.init.
+    rawindustry_list_count = 0; // count of primary industries, set in industryconstructor.init.
+    procindustry_list = []; // array of processor industry type id's, set in industryconstructor.init.
+    procindustry_list_count = 0; // count of secondary industries, set in industryconstructor.init.
+    tertiaryindustry_list = []; // array of tertiary industry type id's, set in industryconstructor.init.
+    tertiaryindustry_list_count = 0; // count of tertiary industries, set in industryconstructor.init.
+    industry_classes = GSIndustryTypeList(); // Stores the build-type of industries
  constructor() {
         this.town_industry_limit = GSController.GetSetting("town_industry_limit");
-        this.town_radius = GSController.GetSetting("town_radius");
-        this.town_long_radius = GSController.GetSetting("town_long_radius");
         this.industry_spacing = GSController.GetSetting("industry_spacing");
-        this.industry_newgrf = GSController.GetSetting("industry_newgrf");
-        this.large_town_cutoff = GSController.GetSetting("large_town_cutoff");
-        this.large_town_spacing = GSController.GetSetting("large_town_spacing");
         this.farm_spacing = GSController.GetSetting("farm_spacing");
         this.raw_industry_min = GSController.GetSetting("raw_industry_min");
         this.proc_industry_min = GSController.GetSetting("proc_industry_min");
