@@ -4,7 +4,7 @@ class GenerationMod extends GSInfo
 {
   function GetAuthor() { return "IRONy"; }
   function GetName() { return "GenerationMod"; }
-  function GetDescription() { return "Modification of generating economic models; }
+  function GetDescription() { return "Modification of generating economic models"; }
   function GetVersion() { return SELF_VERSION; }
   function GetDate() { return "2020-2021"; }
   function CreateInstance() { return "GenerationMod"; }
