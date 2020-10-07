@@ -89,4 +89,4 @@ class GenerationMod extends AIInfo
      }
 }
   
-RegisterAI(MyNewAI());
+RegisterGS(GenerationMod());
