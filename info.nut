@@ -51,7 +51,7 @@ class GenerationMod extends GSInfo
         });
        AddSetting({
             name = "raw_industry_min",
-            description = "Attempt to build this many clusters of raw industry",
+            description = "Attempt to build this many raw industries",
             flags = CONFIG_INGAME,
             easy_value = 5000,
             medium_value = 5000,
