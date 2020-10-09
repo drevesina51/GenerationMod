@@ -80,7 +80,7 @@ class GenerationMod extends GSController {
         this.tertiary_industry_min = GSController.GetSetting("tertiary_industry_min");
         this.debug_level = GSController.GetSetting("debug_level");
     } 
-}   
+}
 
 // Save function
 function GenerationMod::Save() {
