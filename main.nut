@@ -8,9 +8,14 @@
 
 require("progress.nut");
 
+ // change based on setting
 class GenerationMod extends GSController {
-    // change based on setting
     town_industry_limit = 0;
+    town_radius = 0;
+    town_long_radius = 0;
+    industry_spacing = 0;
+    large_town_cutoff = 0;
+    large_town_spacing = 0;
     farm_spacing = 0;
     raw_industry_min = 0;
     proc_industry_min = 0;
@@ -42,8 +47,7 @@ class GenerationMod extends GSController {
     town_eligibility_neartown = GSTownList();
     town_eligibility_nondesert = GSTownList();
     town_eligibility_nonsnow = GSTownList();
-    town_eligibility_nonsnowdesert = GSTownList();
-    
+    town_eligibility_nonsnowdesert = GSTownList(); 
     farmindustry_list = [];
     rawindustry_list = []; // array of raw industry type id's, set in industryconstructor.init.
     rawindustry_list_count = 0; // count of primary industries, set in industryconstructor.init.
@@ -52,9 +56,24 @@ class GenerationMod extends GSController {
     tertiaryindustry_list = []; // array of tertiary industry type id's, set in industryconstructor.init.
     tertiaryindustry_list_count = 0; // count of tertiary industries, set in industryconstructor.init.
     industry_classes = GSIndustryTypeList(); // Stores the build-type of industries
- 
+    industry_class_lookup = [
+                             "Default",
+                             "Water",
+                             "Shore",
+                             "TownBldg",
+                             "NearTown",
+                             "Nondesert",
+                             "Nonsnow",
+                             "Nonsnowdesert",
+                             "Skip"];
     constructor() {
         this.town_industry_limit = GSController.GetSetting("town_industry_limit");
+        this.town_radius = GSController.GetSetting("town_radius");
+        this.town_long_radius = GSController.GetSetting("town_long_radius");
+        this.industry_spacing = GSController.GetSetting("industry_spacing");
+        this.industry_newgrf = GSController.GetSetting("industry_newgrf");
+        this.large_town_cutoff = GSController.GetSetting("large_town_cutoff");
+        this.large_town_spacing = GSController.GetSetting("large_town_spacing");
         this.farm_spacing = GSController.GetSetting("farm_spacing");
         this.raw_industry_min = GSController.GetSetting("raw_industry_min");
         this.proc_industry_min = GSController.GetSetting("proc_industry_min");
@@ -62,6 +81,7 @@ class GenerationMod extends GSController {
         this.debug_level = GSController.GetSetting("debug_level");
     } 
 }   
+
 // Save function
 function GenerationMod::Save() {
     return {};
@@ -86,7 +106,7 @@ function GenerationMod::InArray(item, array) {
     return false;
 }
  
- function IndustryPlacer::RegisterIndustryGRF(industry_newgrf) {
+function GenerationMod::RegisterIndustryGRF(industry_newgrf) {
     local name = "";
 
     Print("Registering " + name + " industries.", 0);
@@ -99,15 +119,6 @@ function GenerationMod::InArray(item, array) {
     local nonsnowdesert_based_industries = [];
     local farm_industries = [];
     local skip_industries = [];
-    // Overrides are for industries that we want to force into a tier or terrain type
-    // If the industry is in the right tier and has the right terrain type (check the first logs printed when a new map is created) then it doesn't need to be in here.
-    /*
-     * From the API docs:
-     *   Industries might be neither raw nor processing. This is usually the
-     *   case for industries which produce nothing (e.g. power plants), but
-     *   also for weird industries like temperate banks and tropic lumber
-     *   mills.
-     */
     local primary_override = [];
     local secondary_override = [];
     local tertiary_override = [];
@@ -122,7 +133,9 @@ function GenerationMod::InArray(item, array) {
         farm_override = [
                          "Farm"
                          ]; 
-       foreach(ind_id, value in industry_classes) {
+    }
+       
+        foreach(ind_id, value in industry_classes) {
         local ind_name = GSIndustryType.GetName(ind_id);
         if(InArray(ind_name, water_based_industries)) {
             industry_classes.SetValue(ind_id, 1);
