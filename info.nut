@@ -12,7 +12,7 @@ class GenerationMod extends GSInfo
   function GetAPIVersion()  { return "1.3"; }
   function GetUrl()         { return ""; }
   
-
+    function GetSettings() {
        AddSetting({
             name = "town_industry_limit",
             description = "Max industries per town",
