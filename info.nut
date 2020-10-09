@@ -13,7 +13,7 @@ class GenerationMod extends GSInfo
   function GetUrl()         { return ""; }
   
     function GetSettings() {
-         AddSetting({
+        AddSetting({
             name = "industry_newgrf",
             description = "Which industry NewGRF are you using?",
             flags = CONFIG_INGAME,
@@ -27,7 +27,7 @@ class GenerationMod extends GSInfo
         AddLabels("industry_newgrf", {
             _0 = "None"
         });
-      AddSetting({
+        AddSetting({
             name = "town_industry_limit",
             description = "Max industries per town",
             flags = CONFIG_INGAME,
@@ -39,7 +39,7 @@ class GenerationMod extends GSInfo
             max_value = 100,
             step_size = 1
         });
-          AddSetting({
+        AddSetting({
             name = "town_radius",
             description = "Tertiary industry distance from town limit",
             flags = CONFIG_INGAME,
@@ -63,7 +63,7 @@ class GenerationMod extends GSInfo
             max_value = 1000,
             step_size = 10
         });
-          AddSetting({
+        AddSetting({
             name = "industry_spacing",
             description = "Space between any two industries",
             flags = CONFIG_INGAME,
@@ -75,7 +75,7 @@ class GenerationMod extends GSInfo
             max_value = 100,
             step_size = 10
         });
-       AddSetting({
+        AddSetting({
             name = "farm_spacing",
             description = "Spacing between farm fill",
             flags = CONFIG_INGAME,
@@ -87,19 +87,7 @@ class GenerationMod extends GSInfo
             max_value = 500,
             step_size = 10
         });
-       AddSetting({
-            name = "raw_industry_min",
-            description = "Attempt to build this many raw industries",
-            flags = CONFIG_INGAME,
-            easy_value = 5000,
-            medium_value = 5000,
-            hard_value = 5000,
-            custom_value = 5000,
-            min_value = 0,
-            max_value = 5000,
-            step_size = 10
-        });                    
-       AddSetting({
+        AddSetting({
             name = "proc_industry_min",
             description = "Attempt to build this many processing industries",
             flags = CONFIG_INGAME,
@@ -135,7 +123,7 @@ class GenerationMod extends GSInfo
             max_value = 3,
             step_size = 1
         });
-     }
+    }
 }
   
 RegisterGS(GenerationMod());
