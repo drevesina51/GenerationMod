@@ -13,7 +13,21 @@ class GenerationMod extends GSInfo
   function GetUrl()         { return ""; }
   
     function GetSettings() {
-       AddSetting({
+         AddSetting({
+            name = "industry_newgrf",
+            description = "Which industry NewGRF are you using?",
+            flags = CONFIG_INGAME,
+            easy_value = 0,
+            medium_value = 0,
+            hard_value = 0,
+            custom_value = 0,
+            min_value = 0,
+            max_value = 10
+        });
+        AddLabels("industry_newgrf", {
+            _0 = "None"
+        });
+      AddSetting({
             name = "town_industry_limit",
             description = "Max industries per town",
             flags = CONFIG_INGAME,
