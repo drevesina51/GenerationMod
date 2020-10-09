@@ -3,7 +3,7 @@ SELF_VERSION <- 1;
 class GenerationMod extends GSInfo
 {
   function GetAuthor()      { return "IRONy"; }
-  function GetName()        { return "GenerationMod"; }
+  function GetName()        { return "Generation Mod"; }
   function GetDescription() { return "Modification of generating economic models"; }
   function GetVersion()     { return SELF_VERSION; }
   function GetDate()        { return "2020-10-07"; }
@@ -60,30 +60,6 @@ class GenerationMod extends GSInfo
             min_value = 0,
             max_value = 100,
             step_size = 10
-        });
-        AddSetting({
-            name = "large_town_cutoff",
-            description = "Clusters avoid towns above this size",
-            flags = CONFIG_INGAME,
-            easy_value = 600,
-            medium_value = 600,
-            hard_value = 600,
-            custom_value = 600,
-            min_value = 0,
-            max_value = 10000,
-            step_size = 100
-        });
-        AddSetting({
-            name = "large_town_spacing",
-            description = "Clusters stay this far away from towns above large town cutoff",
-            flags = CONFIG_INGAME,
-            easy_value = 100,
-            medium_value = 100,
-            hard_value = 100,
-            custom_value = 100,
-            min_value = 0,
-            max_value = 1000,
-            step_size = 50
         });
        AddSetting({
             name = "farm_spacing",
