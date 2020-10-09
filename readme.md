@@ -30,7 +30,7 @@ Snow line			4
 
 Based on 256 x 256.
 
-## General
+# General
 - Max distance from edge for Oil Refineries.
 
 - Allow multiple similar industries per town?
@@ -38,7 +38,7 @@ Based on 256 x 256.
 - Prospect abnormal industries rather than use methods?
 	Use this setting when the script is getting stuck at the abnormal industries (see above).
 
-## Manage
+# Manage
 - Manage industry amount?
 	Yes to build industries every X months based on current numbers.
 - Industry build rate (months)
@@ -46,7 +46,7 @@ Based on 256 x 256.
 - Industry build limit (per refresh)
 	The max number to build every period.
 
-## Debug
+# Debug
 - Log level (higher = print more)
 
 
@@ -72,12 +72,12 @@ Based on 256 x 256.
 - Tertiary industries spawning method
 	Method to use to spawn "accepting only" industries.
 
-## Scattered
+# Scattered
 
 - Minimum distance from towns
 - Minimum distance from industries
 
-## Cluster
+# Cluster
 
  - Maximum industries per cluster
  - Minimum distance between same cluster industries
