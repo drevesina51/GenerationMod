@@ -11,8 +11,6 @@ require("progress.nut");
  // change based on setting
 class GenerationMod extends GSController {
     town_industry_limit = 0;
-    town_radius = 0;
-    town_long_radius = 0;
     industry_spacing = 0;
     large_town_cutoff = 0;
     large_town_spacing = 0;
@@ -68,8 +66,6 @@ class GenerationMod extends GSController {
                              "Skip"];
     constructor() {
         this.town_industry_limit = GSController.GetSetting("town_industry_limit");
-        this.town_radius = GSController.GetSetting("town_radius");
-        this.town_long_radius = GSController.GetSetting("town_long_radius");
         this.industry_spacing = GSController.GetSetting("industry_spacing");
         this.industry_newgrf = GSController.GetSetting("industry_newgrf");
         this.large_town_cutoff = GSController.GetSetting("large_town_cutoff");
@@ -108,7 +104,11 @@ function GenerationMod::InArray(item, array) {
  
 function GenerationMod::RegisterIndustryGRF(industry_newgrf) {
     local name = "";
-
+    switch(industry_newgrf) {
+    case 0:
+        name = "Default";
+        break;
+    }
     Print("Registering " + name + " industries.", 0);
     local water_based_industries = [];
     local shore_based_industries = [];
@@ -124,6 +124,7 @@ function GenerationMod::RegisterIndustryGRF(industry_newgrf) {
     local tertiary_override = [];
     local farm_override = [];
 
+  if(name == "Default") {
         water_based_industries = [
                                   "Oil Rig"
                                   ];
@@ -132,7 +133,7 @@ function GenerationMod::RegisterIndustryGRF(industry_newgrf) {
                                      ];
         farm_override = [
                          "Farm"
-                         ]; 
+                         ];
     }
        
         foreach(ind_id, value in industry_classes) {
@@ -202,11 +203,7 @@ function GenerationMod::RegisterIndustryGRF(industry_newgrf) {
     }
     Print("-----Registration done.-----", 0)
 }
-function GenerationMod::Print(string, level) {
-    if(level <= debug_level) {
-        GSController.Print(false, (GSDate.GetSystemTime() % 3600) + " " + string);
-    }
-}
+
 
 // Initialization function
 function GenerationMod::Init() {
