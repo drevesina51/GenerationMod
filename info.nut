@@ -25,6 +25,66 @@ class GenerationMod extends GSInfo
             max_value = 100,
             step_size = 1
         });
+          AddSetting({
+            name = "town_radius",
+            description = "Tertiary industry distance from town limit",
+            flags = CONFIG_INGAME,
+            easy_value = 20,
+            medium_value = 20,
+            hard_value = 20,
+            custom_value = 20,
+            min_value = 0,
+            max_value = 200,
+            step_size = 10
+        });
+        AddSetting({
+            name = "town_long_radius",
+            description = "Primary industry distance from town limit",
+            flags = CONFIG_INGAME,
+            easy_value = 70,
+            medium_value = 70,
+            hard_value = 70,
+            custom_value = 70,
+            min_value = 10,
+            max_value = 1000,
+            step_size = 10
+        });
+          AddSetting({
+            name = "industry_spacing",
+            description = "Space between any two industries",
+            flags = CONFIG_INGAME,
+            easy_value = 5,
+            medium_value = 5,
+            hard_value = 5,
+            custom_value = 5,
+            min_value = 0,
+            max_value = 100,
+            step_size = 10
+        });
+        AddSetting({
+            name = "large_town_cutoff",
+            description = "Clusters avoid towns above this size",
+            flags = CONFIG_INGAME,
+            easy_value = 600,
+            medium_value = 600,
+            hard_value = 600,
+            custom_value = 600,
+            min_value = 0,
+            max_value = 10000,
+            step_size = 100
+        });
+        AddSetting({
+            name = "large_town_spacing",
+            description = "Clusters stay this far away from towns above large town cutoff",
+            flags = CONFIG_INGAME,
+            easy_value = 100,
+            medium_value = 100,
+            hard_value = 100,
+            custom_value = 100,
+            min_value = 0,
+            max_value = 1000,
+            step_size = 50
+        });
        AddSetting({
             name = "farm_spacing",
             description = "Spacing between farm fill",
