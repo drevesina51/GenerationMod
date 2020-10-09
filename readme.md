@@ -38,14 +38,6 @@ Based on 256 x 256.
 - Prospect abnormal industries rather than use methods?
 	Use this setting when the script is getting stuck at the abnormal industries (see above).
 
-# Manage
-- Manage industry amount?
-	Yes to build industries every X months based on current numbers.
-- Industry build rate (months)
-	The waiting period to build more industries.
-- Industry build limit (per refresh)
-	The max number to build every period.
-
 # Debug
 - Log level (higher = print more)
 
@@ -76,21 +68,3 @@ Based on 256 x 256.
 
 - Minimum distance from towns
 - Minimum distance from industries
-
-# Cluster
-
- - Maximum industries per cluster
- - Minimum distance between same cluster industries
- - Maximum distance between same cluster industries
- - Minimum distance between clusters
- - Minimum distance from towns
- - Minimum distance from industries
-
-# Town
- - Minimum population
- - Minimum distance from town
- - Maximum distance from town factor
- 	Used in the calculation of minimum radius from town center (Radius = Houses# * (x / 100)).
- - Maximum total industries per town
- - Minimum distance from other industries
- - Multiple same industries in town?
