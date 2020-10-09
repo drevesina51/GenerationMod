@@ -7,17 +7,17 @@ Its main goals:
  4) Increasing the realism of the generated map
  5) Creating an opportunity for the player to adapt the game to their standards and ideals
 
-## Installation
+# Installation
 
 Put the repo files in `<OpenTTD path>\game\GenerationMod`
 
-## Required game settings
+# Required game settings
 
 No. of industries				Funding only
 Allow multiple similar industries per town	Yes 
 Max distance from edge for Oil Refineries 	32 
 
-## Recommended map settings
+# Recommended map settings
 
 Towns				Normal
 Terrain type			Hilly 
@@ -26,7 +26,7 @@ Variety distribution		Low
 Edges				All water
 Snow line			4
 
-## Parameters
+# Parameters
 
 Based on 256 x 256.
 
@@ -50,7 +50,7 @@ Based on 256 x 256.
 - Log level (higher = print more)
 
 
-## Density
+# Density
 - Total industries
 	The base number of industries (based on a 256 * 256 map).
 - Min industries %
@@ -73,13 +73,12 @@ Based on 256 x 256.
 	Method to use to spawn "accepting only" industries.
 
 ## Scattered
-	Tries to build with an even distribution, away from other industries and towns.
+
 - Minimum distance from towns
 - Minimum distance from industries
 
 ## Cluster
-	Tries to build a cluster of the same industries, USUALLY REQUIRES 
-	MULTI IND PER TOWN TO WORK.
+
  - Maximum industries per cluster
  - Minimum distance between same cluster industries
  - Maximum distance between same cluster industries
@@ -87,9 +86,7 @@ Based on 256 x 256.
  - Minimum distance from towns
  - Minimum distance from industries
 
-## Town
-	Tries to build industries close to a town, REQUIRES MULTI IND PER TOWN 
-	above if you activate it here.
+# Town
  - Minimum population
  - Minimum distance from town
  - Maximum distance from town factor
@@ -97,4 +94,3 @@ Based on 256 x 256.
  - Maximum total industries per town
  - Minimum distance from other industries
  - Multiple same industries in town?
-
