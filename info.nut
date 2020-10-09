@@ -12,19 +12,7 @@ class GenerationMod extends GSInfo
   function GetAPIVersion()  { return "1.3"; }
   function GetUrl()         { return ""; }
   
-  function GetSettings() {
-       AddSetting({      
-            name = "industry_spacing",
-            description = "Space between any two industries",
-            flags = CONFIG_INGAME,
-            easy_value = 40,
-            medium_value = 40,
-            hard_value = 40,
-            custom_value = 40,
-            min_value = 0,
-            max_value = 500,
-            step_size = 10
-       });
+
        AddSetting({
             name = "town_industry_limit",
             description = "Max industries per town",
