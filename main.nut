@@ -6,23 +6,6 @@
 // 4) Increasing the realism of the generated map
 // 5) Creating an opportunity for the player to adapt the game to their standards and ideals
 
-// Contributors:
-
-// ToDo:
-
-// Error handlers
-// Clean code comments
-// Debugging support
-
-
-// Notes:
-// Log levels:
-//	static LVL_INFO = 1;           // main info. eg what it is doing
-//	static LVL_SUB_DECISIONS = 2;  // sub decisions - eg. reasons for not doing certain things etc.
-//	static LVL_DEBUG = 3;          // debug prints - debug prints during carrying out actions
-
-
-
 // Imports
 import("util.superlib", "SuperLib", 36);
 Result 		<- SuperLib.Result;
@@ -43,51 +26,52 @@ class IndustryConstructor extends GSController{
 	MAP_SIZE_Y = 1.0;
 	MAP_SCALE = 1.0;
 	
-	BUILD_LIMIT = 0; 											// Set from settings, in class constructor and each refresh.(initial is max ind per map, subs is max per refresh)
-	CONTINUE_GS = null;											// True if whole script must continue.
-	INIT_PERFORMED = false;										// True if IndustryConstructor.Init has run.
-	LOAD_PERFORMED = false;										// Bool of load status
-	FIRSTBUILD_PERFORMED = null;								// True if IndustryConstructor.Load OR IndustryConstructor.BuildIndustryClass has run.
-	PRIMARY_PERFORMED = null;									// True if IndustryConstructor.BuildIndustryClass has run for primary industries.
-	SECONDARY_PERFORMED = null;									// True if IndustryConstructor.BuildIndustryClass has run for secondary industries.
-	TERTIARY_PERFORMED = null;									// True if IndustryConstructor.BuildIndustryClass has run for tertiary industries.
-	SPECIAL_PERFORMED = null;									// True if IndustryConstructor.BuildIndustryClass has run for special industries.
-	BUILD_SPEED = 0;											// Global build speed variable
+	BUILD_LIMIT = 0; 						                // Set from settings, in class constructor and each refresh.(initial is max ind per map, subs is max per refresh)
+	CONTINUE_GS = null;								// True if whole script must continue.
+	INIT_PERFORMED = false;								// True if IndustryConstructor.Init has run.
+	LOAD_PERFORMED = false;								// Bool of load status
+	FIRSTBUILD_PERFORMED = null;							// True if IndustryConstructor.Load OR IndustryConstructor.BuildIndustryClass has run.
+	PRIMARY_PERFORMED = null;							// True if IndustryConstructor.BuildIndustryClass has run for primary industries.
+	SECONDARY_PERFORMED = null;							// True if IndustryConstructor.BuildIndustryClass has run for secondary industries.
+	TERTIARY_PERFORMED = null;							// True if IndustryConstructor.BuildIndustryClass has run for tertiary industries.
+	SPECIAL_PERFORMED = null;							// True if IndustryConstructor.BuildIndustryClass has run for special industries.
+	BUILD_SPEED = 0;								// Global build speed variable
 
-	CLUSTERNODE_LIST_IND = []; 									// Sub-array of industry types, for cluster builder
-	CLUSTERNODE_LIST_COUNT = [];								// Sub-array of industry count, for cluster builder
-	CLUSTERTILE_LIST = [];										// Sub-array of node tiles, must be used with above 2D
+	CLUSTERNODE_LIST_IND = []; 							// Sub-array of industry types, for cluster builder
+	CLUSTERNODE_LIST_COUNT = [];							// Sub-array of industry count, for cluster builder
+	CLUSTERTILE_LIST = [];								// Sub-array of node tiles, must be used with above 2D
+
+	TOWNNODE_LIST_TOWN = [];							// Sub-array of town ids registered
+	TOWNNODE_LIST_IND = []; 							// Sub-array of industry types, for town builder
+	TOWNNODE_LIST_COUNT = [];							// Sub-array of industry count, for town builder
 	
-	TOWNNODE_LIST_TOWN = [];									// Sub-array of town ids registered
-	TOWNNODE_LIST_IND = []; 									// Sub-array of industry types, for town builder
-	TOWNNODE_LIST_COUNT = [];									// Sub-array of industry count, for town builder
+	IND_TYPE_LIST = 0;								// Is GSIndustryTypeList(), set in IndustryConstructor.Init.
+	IND_TYPE_COUNT = 0;								// Count of industries in this.IND_TYPE_LIST, set in IndustryConstructor.Init.
+	CARGO_PAXID = 0									// Passenger cargo ID, set in IndustryConstructor.Init.
 	
-	IND_TYPE_LIST = 0;											// Is GSIndustryTypeList(), set in IndustryConstructor.Init.
-	IND_TYPE_COUNT = 0;											// Count of industries in this.IND_TYPE_LIST, set in IndustryConstructor.Init.
-	CARGO_PAXID = 0;											// Passenger cargo ID, set in IndustryConstructor.Init.
-	
-	RAWINDUSTRY_LIST = [];										// Array of raw industry type ID's, set in IndustryConstructor.Init.
-	RAWINDUSTRY_LIST_COUNT = 0;									// Count of primary industries, set in IndustryConstructor.Init.
-	PROCINDUSTRY_LIST = [];										// Array of processor industry type ID's, set in IndustryConstructor.Init.
-	PROCINDUSTRY_LIST_COUNT = 0;								// Count of secondary industries, set in IndustryConstructor.Init.
-	TERTIARYINDUSTRY_LIST = [];									// Array of tertiary industry type ID's, set in IndustryConstructor.Init.
-	TERTIARYINDUSTRY_LIST_COUNT = 0;							// Count of tertiary industries, set in IndustryConstructor.Init.
-	SPECIALINDUSTRY_LIST = [];									// Array of special industry type ID's, set in IndustryConstructor.Init.
-	SPECIALINDUSTRY_LIST_COUNT = 0;								// Count of special industries, set in IndustryConstructor.Init.
+	RAWINDUSTRY_LIST = [];								// Array of raw industry type ID's, set in IndustryConstructor.Init.
+	RAWINDUSTRY_LIST_COUNT = 0;							// Count of primary industries, set in IndustryConstructor.Init.
+	PROCINDUSTRY_LIST = [];								// Array of processor industry type ID's, set in IndustryConstructor.Init.
+	PROCINDUSTRY_LIST_COUNT = 0;							// Count of secondary industries, set in IndustryConstructor.Init.
+	TERTIARYINDUSTRY_LIST = [];							// Array of tertiary industry type ID's, set in IndustryConstructor.Init.
+	TERTIARYINDUSTRY_LIST_COUNT = 0;						// Count of tertiary industries, set in IndustryConstructor.Init.
+	SPECIALINDUSTRY_LIST = [];							// Array of special industry type ID's, set in IndustryConstructor.Init.
+	SPECIALINDUSTRY_LIST_COUNT = 0;							// Count of special industries, set in IndustryConstructor.Init.
 	SPECIALINDUSTRY_TYPES = ["Bank", "Oil Rig", "Water Tower", "Lumber Mill"];
 
 	// User variables
-	DENSITY_IND_TOTAL = 0;										// Set from settings, in IndustryConstructor.Init. Total industries, integer always >= 1
-	DENSITY_IND_MIN = 0;										// Set from settings, in IndustryConstructor. Init.Min industry density %, float always < 1.
-	DENSITY_IND_MAX = 0;										// Set from settings, in IndustryConstructor.Init. Max industry density %, float always > 1.
-	DENSITY_RAW_PROP = 0;										// Set from settings, in IndustryConstructor.Init. Primary industry proportion, float always < 1.
-	DENSITY_PROC_PROP = 0;										// Set from settings, in IndustryConstructor.Init. Secondary industry proportion, float always < 1.
-	DENSITY_TERT_PROP = 0;										// Set from settings, in IndustryConstructor.Init. Tertiary industry proportion, float always < 1.
-	DENSITY_SPEC_PROP = 0;										// Set from settings, in IndustryConstructor.Init. Special industry proportion, float always < 1.
-	DENSITY_RAW_METHOD = 0;										// Set from settings, in IndustryConstructor.Init.
-	DENSITY_PROC_METHOD = 0;									// Set from settings, in IndustryConstructor.Init.
-	DENSITY_TERT_METHOD = 0;									// Set from settings, in IndustryConstructor.Init.
+	DENSITY_IND_TOTAL = 0;								// Set from settings, in IndustryConstructor.Init. Total industries, integer always >= 1
+	DENSITY_IND_MIN = 0;								// Set from settings, in IndustryConstructor. Init.Min industry density %, float always < 1.
+	DENSITY_IND_MAX = 0;								// Set from settings, in IndustryConstructor.Init. Max industry density %, float always > 1.
+	DENSITY_RAW_PROP = 0;								// Set from settings, in IndustryConstructor.Init. Primary industry proportion, float always < 1.
+	DENSITY_PROC_PROP = 0;								// Set from settings, in IndustryConstructor.Init. Secondary industry proportion, float always < 1.
+	DENSITY_TERT_PROP = 0;								// Set from settings, in IndustryConstructor.Init. Tertiary industry proportion, float always < 1.
+	DENSITY_SPEC_PROP = 0;								// Set from settings, in IndustryConstructor.Init. Special industry proportion, float always < 1.
+	DENSITY_RAW_METHOD = 0;								// Set from settings, in IndustryConstructor.Init.
+	DENSITY_PROC_METHOD = 0;							// Set from settings, in IndustryConstructor.Init.
+	DENSITY_TERT_METHOD = 0;							// Set from settings, in IndustryConstructor.Init.
 
+// construction
 	constructor(){
 		LOAD_PERFORMED = false;
 		INIT_PERFORMED = false;
@@ -111,7 +95,7 @@ class IndustryConstructor extends GSController{
 // Save function	
 function IndustryConstructor::Save(){
 	//Display save msg
-	Log.Info("+==============================+", Log.LVL_INFO);
+	Log.Info("----------------------", Log.LVL_INFO);
 	Log.Info("Saving data", Log.LVL_INFO);
 	
 	// Create the save data table
@@ -137,7 +121,7 @@ function IndustryConstructor::Save(){
 // Load function
 function IndustryConstructor::Load(SV_VERSION, SV_TABLE){
 	// Display load msg
-	Log.Info("+==============================+", Log.LVL_INFO);
+	Log.Info("----------------------", Log.LVL_INFO);
 	Log.Info("Loading data, saved with version " + SV_VERSION + " of game script", Log.LVL_INFO);
 	
 	// Loop through save table
@@ -162,7 +146,7 @@ function IndustryConstructor::Load(SV_VERSION, SV_TABLE){
 
 // Program start function
 function IndustryConstructor::Start(){
-	// Welcome msg
+	// Welcome
 	Log.Info("Starting Industry Constructor!", Log.LVL_INFO);
 
 	// Welcome text
@@ -170,9 +154,9 @@ function IndustryConstructor::Start(){
 
 	// Pause
 	GSGame.Pause();
-	// Call initialization function
+
 	this.Init();
-	// Unpause
+
 	GSGame.Unpause();
 	
 	// Call build function if new game
@@ -223,7 +207,7 @@ function IndustryConstructor::Start(){
 		// - 74 ticks = 1 day , 518 ticks = 1 week, 2252 ticks = 1 month, 27029 ticks = 1 year
 		this.Sleep(Helper.Max(1, (GSController.GetSetting("BUILD_SPEED") * 2252) - TICKS_USED));
 	}
-	// Display exit msg
+	// Display exit
 	Log.Warning("The game script has ended, and will now crash.", Log.LVL_INFO);
 }
 
@@ -232,8 +216,8 @@ function IndustryConstructor::Init(){
 	// Check GS continue
 	if(CONTINUE_GS == false) return;
 	
-	// Display status msg
-	Log.Info("+==============================+", Log.LVL_INFO);
+	// Display status
+	Log.Info("----------------------", Log.LVL_INFO);
 	Log.Info("Initializing...", Log.LVL_INFO);
 	
 	// Set Advanced Setting parameters
@@ -267,7 +251,7 @@ function IndustryConstructor::Init(){
 
 	// If load has not happened, then this is a new game
 	if (this.LOAD_PERFORMED == false){
-		// Display status msg
+		// Display status
 		Log.Info(">This is a new game, preparing...", Log.LVL_INFO);
 		
 		// Check if there are industries on map (if user has not set to funding only error...)
@@ -278,7 +262,7 @@ function IndustryConstructor::Init(){
 			
 		// If there are industries on the map
 		if (IND_LIST_COUNT > 0)	{
-			// Display error msg
+			// Display error
 			Log.Warning(">There are " + IND_LIST_COUNT + " industries on the map, when there must be none!", Log.LVL_INFO);
 			
 			// Set GS continue to false
