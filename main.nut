@@ -421,12 +421,12 @@ function IndustryConstructor::BuildIndustry() {
 	if(CONTINUE_GS == false) return;
 			
 	// Display status msg
-	Log.Info("+==============================+", Log.LVL_INFO);
+	Log.Info("----------------------", Log.LVL_INFO);
 	Log.Info("Building industries...", Log.LVL_INFO);
 
 	// Check initiaized
 	if (this.INIT_PERFORMED == false){
-		// Display error msg
+		// Display error 
 		Log.Error(">IndustryConstructor.Build: Script uninitialized!", Log.LVL_INFO);
 		return;
 	}
@@ -461,15 +461,15 @@ function IndustryConstructor::BuildIndustry() {
 	}
 
 	// Loop until build limit is reached
-	local BUILD_COUNT = 0;					// Total build count for each build function
+	local BUILD_COUNT = 0;				// Total build count for each build function
 	local CURRENT_METHOD = null;			// Current build method for each loop
 	local CURRENT_IND_PROP = null;			// Current industry proportion for each loop
-	local CURRENT_LIST = null;				// Current industry list for each loop
+	local CURRENT_LIST = null;			// Current industry list for each loop
 	local CURRENT_LIST_COUNT = 0;			// Count of current list for each loop
 	local BUILD_CONTINUE = true;
-	local BUILD_NOW = null;					// Switch setting for which class to build
+	local BUILD_NOW = null;				// Switch setting for which class to build
 	
-	// Loop while below current build limit
+	// While below current build limit
 	while(LOCAL_BUILD_LIMIT - BUILD_COUNT > 0){
 		
 		// Set parameters for loop
@@ -498,7 +498,7 @@ function IndustryConstructor::BuildIndustry() {
 					BUILD_CONTINUE = false;
 					break;
 				}
-				Log.Info("+------------------------------+", Log.LVL_INFO);
+				Log.Info("----------------------", Log.LVL_INFO);
 				Log.Info(">Building primary industries", Log.LVL_INFO);
 				CURRENT_LIST = RAWINDUSTRY_LIST;
 				CURRENT_LIST_COUNT = RAWINDUSTRY_LIST_COUNT;
@@ -512,7 +512,7 @@ function IndustryConstructor::BuildIndustry() {
 					BUILD_CONTINUE = false;
 					break;
 				}
-				Log.Info("+------------------------------+", Log.LVL_INFO);
+				Log.Info("----------------------", Log.LVL_INFO);
 				Log.Info(">Building secondary industries", Log.LVL_INFO);
 				CURRENT_LIST = PROCINDUSTRY_LIST;
 				CURRENT_LIST_COUNT = PROCINDUSTRY_LIST_COUNT;
@@ -526,7 +526,7 @@ function IndustryConstructor::BuildIndustry() {
 					BUILD_CONTINUE = false;
 					break;
 				}
-				Log.Info("+------------------------------+", Log.LVL_INFO);
+				Log.Info("----------------------", Log.LVL_INFO);
 				Log.Info("Building tertiary industries", Log.LVL_INFO);
 				CURRENT_LIST = TERTIARYINDUSTRY_LIST;
 				CURRENT_LIST_COUNT = TERTIARYINDUSTRY_LIST_COUNT;
@@ -545,11 +545,11 @@ function IndustryConstructor::BuildIndustry() {
 				CURRENT_LIST = SPECIALINDUSTRY_LIST;
 				CURRENT_LIST_COUNT = SPECIALINDUSTRY_LIST_COUNT;
 				CURRENT_METHOD = 5;		// Special case non-selectable
-				CURRENT_IND_PROP = DENSITY_SPEC_PROP;	// ???
+				CURRENT_IND_PROP = DENSITY_SPEC_PROP;
 				SPECIAL_PERFORMED = true;
 				break;
 			default:
-				// Display error msg
+				// Display error
 				Log.Error(">IndustryConstructor.BuildIndustryClass: Incorrect industry class chosen!", Log.LVL_INFO);
 				return;
 		}
@@ -673,14 +673,13 @@ function IndustryConstructor::BuildIndustry() {
 		TERTIARY_PERFORMED = false;
 		SPECIAL_PERFORMED = false;
 		// Display status
-		Log.Info("+------------------------------+", Log.LVL_INFO);
+		Log.Info("----------------------", Log.LVL_INFO);
 		Log.Info(">Built all industry class types ", Log.LVL_INFO);
 		return;
 		}
 	}	// End while loop
 }
 
-// Special build method for special industries, uses "hard code" methods specific for each type
 // return 1 if built and 0 if not
 function IndustryConstructor::SpecialBuildMethod(INDUSRTY_ID){
 		
@@ -987,7 +986,7 @@ function IndustryConstructor::ClusterBuildMethod(INDUSRTY_ID){
 		
 	// Variables
 	local IND_NAME = GSIndustryType.GetName(INDUSRTY_ID)			// Industry name string
-	local LIST_VALUE = 0;											// The point on the list surrently, to synchronise between lists
+	local LIST_VALUE = 0;							// The point on the list surrently, to synchronise between lists
 	local NODE_TILE = null;
 	local MULTI = 0;
 	local IND = null;
@@ -1418,7 +1417,7 @@ function IndustryConstructor::HandleEvents(){
 	}
 	
 	// Display status msg
-	Log.Info("+==============================+", Log.LVL_INFO);
+	Log.Info("----------------------", Log.LVL_INFO);
 	Log.Info("Event handling...", Log.LVL_INFO);
 	
 	// While events are waiting
