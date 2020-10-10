@@ -233,6 +233,19 @@ class IndustryConstructor extends GSInfo
 		});		
 		 AddSetting
 		 ({
+			name = "SPEC_BANK_MINPOP", 
+			description = "Special: Minimum town pop for Banks", 
+			easy_value = 1200, 
+			medium_value = 1200, 
+			hard_value = 1200, 
+			custom_value = 1200, 
+			flags = CONFIG_INGAME, 
+			min_value = 600, 
+			max_value = 3000,
+			step_size = 200
+		 });	
+		 AddSetting
+		 ({
 			 name = "MAX_OIL_DIST", 
 			 description = "Max distance from edge for Oil Refineries", 
 			 easy_value = 40, 
