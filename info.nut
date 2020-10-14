@@ -36,12 +36,38 @@ class IndustryConstructor extends GSInfo
 		 AddSetting
 		 ({
 			 name = "MANAGE_BOOL", 
-			 description = "Manage industry amount (must be on)", 
+			 description = "Industry amount (must be on)", 
 			 easy_value = 1, 
 			 medium_value = 1, 
 			 hard_value = 1, 
 			 custom_value = 1, 
 			 flags = CONFIG_INGAME | CONFIG_BOOLEAN
+		 });
+		AddSetting
+		 ({
+			 name = "BUILD_SPEED", 
+			 description = "Industry build rate (months)", 
+			 easy_value = 6, 
+			 medium_value = 12, 
+			 hard_value = 18 
+			 custom_value = 12, 
+			 flags = CONFIG_INGAME, 
+			 min_value = 3, 
+			 max_value = 48,
+			 step_size = 3
+		 });
+		 AddSetting
+		 ({
+			 name = "BUILD_LIMIT", 
+			 description = "Industry build limit (per period)", 
+			 easy_value = 4, 
+			 medium_value = 2, 
+			 hard_value = 1, 
+			 custom_value = 1, 
+			 flags = CONFIG_INGAME, 
+			 min_value = 1, 
+			 max_value = 5
+			 step_size = 1
 		 });
 		AddSetting
 		({
