@@ -17,20 +17,20 @@ class GenerationMod extends GSInfo
 		 ({
 			 name = "MULTI_IND_TOWN", 
 			 description = "Allow multiple similar industries per town (must be on)", 
-			 easy_value = 0, 
-			 medium_value = 0, 
-			 hard_value = 0, 
-			 custom_value = 0, 
+			 easy_value = 1, 
+			 medium_value = 1, 
+			 hard_value = 1, 
+			 custom_value = 1, 
 			 flags = CONFIG_BOOLEAN | CONFIG_INGAME
 		 }); 	
 		 AddSetting
 		 ({
 			 name = "PROS_BOOL", 
 			 description = "Prospect abnormal industries rather than use methods (must be on)",
-			 easy_value = 0, 
-			 medium_value = 0, 
-			 hard_value = 0, 
-			 custom_value = 0, 
+			 easy_value = 1, 
+			 medium_value = 1, 
+			 hard_value = 1, 
+			 custom_value = 1, 
 			 flags = CONFIG_BOOLEAN | CONFIG_INGAME
 		 });
 		 AddSetting
@@ -184,7 +184,7 @@ class GenerationMod extends GSInfo
 		({
 			name = "DENSITY_RAW_METHOD", 
 			description = "Primary industries spawning method", 
-			easy_value = 2, 
+			easy_value = 3, 
 			medium_value = 3, 
 			hard_value = 3, 
 			custom_value = 3, 
@@ -201,10 +201,10 @@ class GenerationMod extends GSInfo
 		({
 			name = "DENSITY_PROC_METHOD", 
 			description = "Secondary industries spawning method", 
-			easy_value = 1, 
-			medium_value = 1, 
+			easy_value = 3, 
+			medium_value = 3, 
 			hard_value = 3, 
-			custom_value = 1, 
+			custom_value = 3, 
 			flags = 0, 
 			min_value = 3, 
 			max_value = 4
@@ -219,9 +219,9 @@ class GenerationMod extends GSInfo
 			name = "DENSITY_TERT_METHOD", 
 			description = "Tertiary industries spawning method", 
 			easy_value = 3, 
-			medium_value = 4, 
-			hard_value = 4, 
-			custom_value = 4, 
+			medium_value = 3, 
+			hard_value = 3, 
+			custom_value = 3, 
 			flags = 0, 
 			min_value = 3, 
 			max_value = 4
